@@ -56,7 +56,10 @@ public:
     void insert(int val)
     {
         if (isFull())
+        {
+            cout << "Heap is Full" << line;
             return;
+        }
 
         heapArr[curSize] = val;
         reheapUp(curSize);
@@ -66,7 +69,10 @@ public:
     void remove()
     {
         if (isEmpty())
+        {
+            cout << "Heap is Empty" << line;
             return;
+        }
 
         heapArr[0] = heapArr[curSize - 1];
         curSize--;
@@ -83,7 +89,7 @@ public:
 
 int main()
 {
-    MinHeap myHeap;
+    MinHeap myHeap(8);
 
     myHeap.insert(1);
     myHeap.insert(5);
@@ -101,6 +107,14 @@ int main()
 
     cout << "Heap Holds:" << space;
     myHeap.printHeap();
+
+    myHeap.insert(10); //  Fill Heap
+
+    myHeap.insert(10);
+    myHeap.insert(10);
+
+    for (int i = 0; i < 10; i++)
+        myHeap.remove();
 
     return 0;
 }
