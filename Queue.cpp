@@ -1,63 +1,52 @@
 #include "Header.h"
 
-class Queue
-{
-    int *QueArr;
-    int size, front, rear;
-
+class Queue {
+	int* QueArr;
+	int size, front, rear;
 public:
-    Queue(int capacity = 10) : size(capacity), front(0), rear(0)
-    {
-        QueArr = new int[size];
-    }
+	Queue(int capacity = 10) :size(capacity), front(0), rear(0) {
+		QueArr = new int[size];
+	}
 
-    bool isFull() const
-    {
-        return !front && rear == size;
-    }
+	bool isFull()const {
+		return !front && rear == size;
+	}
 
-    bool isEmpty() const
-    {
-        return front == rear;
-    }
+	bool isEmpty()const {
+		return front == rear;
+	}
 
-    void push(int val)
-    {
-        if (isFull())
-            return;
+	void push(int val) {
+		if (isFull())
+			return;
 
-        QueArr[rear] = val;
-        rear++;
-    }
+		QueArr[rear] = val;
+		rear++;
+	}
 
-    void pop()
-    {
-        if (isEmpty())
-            return;
+	void pop() {
+		if (isEmpty())
+			return;
 
-        front++;
-    }
+		front++;
+	}
 
-    int getFront()
-    {
-        if (isEmpty())
-            return INT_MIN;
+	int getFront() {
+		if (isEmpty())
+			return INT_MIN;
 
-        return QueArr[front];
-    }
+		return QueArr[front];
+	}
 
-    void print() const
-    {
-        for (int i = front; i < rear; i++)
-        {
-            cout << QueArr[i] << space;
-        }
-        cout << line;
-    }
+	void print()const {
+		for (int i = front; i < rear; i++) {
+			cout << QueArr[i] << space;
+		}
+		cout << line;
+	}
 };
 
-int main()
-{
+int main(){
     Queue myQue(3);
 
     myQue.isEmpty() ? cout << "Queue is Empty" : cout << "Queue is not Empty";
