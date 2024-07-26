@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 
 #define space "\t"
 #define line "\n\n"
