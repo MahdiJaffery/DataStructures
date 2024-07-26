@@ -1,112 +1,126 @@
 #include "Header.h"
 
-class Circular {
-	Node* head, * tail;
+class Circular
+{
+    Node *head, *tail;
+
 public:
-	Circular() :head(nullptr), tail(nullptr) {}
+    Circular() : head(nullptr), tail(nullptr) {}
 
-	void insertAtHead(int val) {
-		if (!head)
-		{
-			head = tail = new Node(val);
-			return;
-		}
+    void insertAtHead(int val)
+    {
+        if (!head)
+        {
+            head = tail = new Node(val);
+            return;
+        }
 
-		Node* newNode = new Node(val);
-		tail->right = newNode;
-		newNode->right = head;
+        Node *newNode = new Node(val);
+        tail->right = newNode;
+        newNode->right = head;
 
-		head = newNode;
+        head = newNode;
 
-		newNode = nullptr;
-		delete newNode;
-	}
+        newNode = nullptr;
+        delete newNode;
+    }
 
-	void insertAtTail(int val) {
-		if (!head) {
-			head = tail = new Node(val);
-			return;
-		}
+    void insertAtTail(int val)
+    {
+        if (!head)
+        {
+            head = tail = new Node(val);
+            return;
+        }
 
-		Node* newNode = new Node(val);
-		tail->right = newNode;
-		newNode->right = head;
+        Node *newNode = new Node(val);
+        tail->right = newNode;
+        newNode->right = head;
 
-		tail = newNode;
+        tail = newNode;
 
-		newNode = nullptr;
-		delete newNode;
-	}
+        newNode = nullptr;
+        delete newNode;
+    }
 
-	bool searchElement(int val) {
-		Node* temp = head;
-		do {
-			if (temp->val == val)
-				return true;
-			temp = temp->right;
-		} while (temp->right != head);
-		return false;
-	}
+    bool searchElement(int val)
+    {
+        Node *temp = head;
+        do
+        {
+            if (temp->val == val)
+                return true;
+            temp = temp->right;
+        } while (temp->right != head);
+        return false;
+    }
 
-	void removeFromHead() {
-		if (!head)
-			return;
-		else if (head == tail) {
-			head = tail = nullptr;
-			delete head, tail;
-			return;
-		}
+    void removeFromHead()
+    {
+        if (!head)
+            return;
+        else if (head == tail)
+        {
+            head = tail = nullptr;
+            delete head, tail;
+            return;
+        }
 
-		Node* temp = head->right;
-		tail->right = temp;
+        Node *temp = head->right;
+        tail->right = temp;
 
-		head->right = nullptr;
-		head = nullptr;
-		delete head;
+        head->right = nullptr;
+        head = nullptr;
+        delete head;
 
-		head = temp;
+        head = temp;
 
-		temp = nullptr;
-		delete temp;
-	}
+        temp = nullptr;
+        delete temp;
+    }
 
-	void removeFromTail() {
-		if (!head)
-			return;
-		else if (head == tail) {
-			head = tail = nullptr;
-			delete head, tail;
-			return;
-		}
+    void removeFromTail()
+    {
+        if (!head)
+            return;
+        else if (head == tail)
+        {
+            head = tail = nullptr;
+            delete head, tail;
+            return;
+        }
 
-		Node* temp = head;
-		while (temp->right != tail)
-			temp = temp->right;
+        Node *temp = head;
+        while (temp->right != tail)
+            temp = temp->right;
 
-		temp->right = nullptr;
-		temp->right = head;
+        temp->right = nullptr;
+        temp->right = head;
 
-		tail->right = nullptr;
-		tail = nullptr;
-		delete tail;
+        tail->right = nullptr;
+        tail = nullptr;
+        delete tail;
 
-		tail = temp;
+        tail = temp;
 
-		temp = nullptr;
-		delete temp;
-	}
+        temp = nullptr;
+        delete temp;
+    }
 
-	void printCircular() {
-		Node* temp = head;
-		do {
-			cout << temp->val << space;
-			temp = temp->right;
-		} while (temp != head);
-		cout << line;
-	}
+    void printCircular()
+    {
+        Node *temp = head;
+        do
+        {
+            cout << temp->val << space;
+            temp = temp->right;
+        } while (temp != head);
+        cout << line;
+    }
 };
 
-int main(){
+int main()
+{
     Circular List;
 
     List.insertAtHead(2);
