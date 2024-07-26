@@ -106,7 +106,7 @@ public:
             temp = temp->right;
         }
         cout << line;
-    
+    }
 };
 
 int main()
