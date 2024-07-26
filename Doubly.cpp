@@ -1,108 +1,123 @@
 #include "Header.h"
 
-class Doubly {
-	Node* head, * tail;
+class Doubly
+{
+    Node *head, *tail;
+
 public:
-	Doubly() :head(nullptr), tail(nullptr) {}
+    Doubly() : head(nullptr), tail(nullptr) {}
 
-	void insertAtHead(int val) {
-		if (!head) {
-			tail = head = new Node(val);
-			return;
-		}
+    void insertAtHead(int val)
+    {
+        if (!head)
+        {
+            tail = head = new Node(val);
+            return;
+        }
 
-		Node* temp = new Node(val);
+        Node *temp = new Node(val);
 
-		temp->right = head;
-		head->left = temp;
-		head = temp;
+        temp->right = head;
+        head->left = temp;
+        head = temp;
 
-		temp = nullptr;
-		delete temp;
-	}
+        temp = nullptr;
+        delete temp;
+    }
 
-	void insertAtTail(int val) {
-		if (!head) {
-			tail = head = new Node(val);
-			return;
-		}
+    void insertAtTail(int val)
+    {
+        if (!head)
+        {
+            tail = head = new Node(val);
+            return;
+        }
 
-		Node* temp = new Node(val);
+        Node *temp = new Node(val);
 
-		temp->left = tail;
-		tail->right = temp;
-		tail = temp;
+        temp->left = tail;
+        tail->right = temp;
+        tail = temp;
 
-		temp = nullptr;
-		delete temp;
-	}
+        temp = nullptr;
+        delete temp;
+    }
 
-	bool searchElement(int val) {
-		Node* temp = head;
-		while (temp) {
-			if (temp->val == val)
-				return true;
-			temp = temp->right;
-		}
-		return false;
-	}
+    bool searchElement(int val)
+    {
+        Node *temp = head;
+        while (temp)
+        {
+            if (temp->val == val)
+                return true;
+            temp = temp->right;
+        }
+        return false;
+    }
 
-	void removeFromHead() {
-		if (!head)
-			return;
-		else if (head == tail) {
-			head = tail = nullptr;
-			delete head, tail;
-			return;
-		}
+    void removeFromHead()
+    {
+        if (!head)
+            return;
+        else if (head == tail)
+        {
+            head = tail = nullptr;
+            delete head, tail;
+            return;
+        }
 
-		Node* temp = head->right;
-		temp->left = nullptr;
-		head->right = nullptr;
+        Node *temp = head->right;
+        temp->left = nullptr;
+        head->right = nullptr;
 
-		head = nullptr;
-		delete head;
+        head = nullptr;
+        delete head;
 
-		head = temp;
+        head = temp;
 
-		temp = nullptr;
-		delete temp;
-	}
+        temp = nullptr;
+        delete temp;
+    }
 
-	void removeFromTail() {
-		if (!head)
-			return;
-		else if (head == tail) {
-			head = tail = nullptr;
-			delete head, tail;
-			return;
-		}
+    void removeFromTail()
+    {
+        if (!head)
+            return;
+        else if (head == tail)
+        {
+            head = tail = nullptr;
+            delete head, tail;
+            return;
+        }
 
-		Node* temp = tail->left;
+        Node *temp = tail->left;
 
-		temp->right = nullptr;
-		tail->left = nullptr;
+        temp->right = nullptr;
+        tail->left = nullptr;
 
-		tail = nullptr;
-		delete tail;
+        tail = nullptr;
+        delete tail;
 
-		tail = temp;
+        tail = temp;
 
-		temp = nullptr;
-		delete temp;
-	}
+        temp = nullptr;
+        delete temp;
+    }
 
-	void printDoubly() {
-		Node* temp = head;
-		while (temp) {
-			cout << temp->val << space;
-			temp = temp->right;
-		}
-		cout << line;
-	}
+    void printDoubly()
+    {
+        Node *temp = head;
+        while (temp)
+        {
+            cout << temp->val << space;
+            temp = temp->right;
+        }
+        cout << line;
+    }
 };
 
-int main(){
+int main()
+{
     Doubly List;
 
     List.insertAtHead(2);

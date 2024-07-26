@@ -109,7 +109,8 @@ public:
     }
 };
 
-int main(){
+int main()
+{
     Singly List;
 
     List.insertAtHead(2);
