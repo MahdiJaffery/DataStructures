@@ -1255,3 +1255,182 @@ public:
 		cout << line;
 	}
 };
+
+template <typename T>
+class Graph
+{
+	int numVertices, maxVertices, **edges;
+	T *Vertices;
+
+	int isIndex(T vertex)
+	{
+		for (int i = 0; i < numVertices; i++)
+			if (Vertices[i] == vertex)
+				return i;
+		return -1;
+	}
+
+	bool isEmpty()
+	{
+		return numVertices == 0;
+	}
+
+	bool isFull()
+	{
+		return numVertices == maxVertices;
+	}
+
+	int getWeight(T from, T to)
+	{
+		int row, col;
+		row = isIndex(from);
+		col = isIndex(to);
+
+		return edges[row][col];
+	}
+
+public:
+	Graph(int maxSize = 5)
+	{
+		numVertices = 0;
+		maxVertices = maxSize;
+
+		Vertices = new T[maxSize];
+		edges = new int *[maxSize];
+		for (int i = 0; i < maxSize; i++)
+			edges[i] = new int[maxSize];
+	}
+
+	void makeEmpty()
+	{
+		numVertices = 0;
+
+		for (int i = 0; i < maxVertices; i++)
+			for (int j = 0; j < maxVertices; j++)
+				edges[i][j] = 0;
+
+		for (int i = 0; i < maxVertices; i++)
+			Vertices[i] = 0;
+	}
+
+	void addVertex(T vertex)
+	{
+		Vertices[numVertices] = vertex;
+
+		for (int i = 0; i < numVertices; i++)
+		{
+			edges[numVertices][i] = 0;
+			edges[i][numVertices] = 0;
+		}
+
+		numVertices++;
+	}
+
+	void addEdge(T from, T to, int weight)
+	{
+		int row, col;
+		row = isIndex(from);
+		col = isIndex(to);
+
+		edges[row][col] = weight;
+	}
+
+	void removeEdge(T from, T to)
+	{
+		int row, col;
+		row = isIndex(from);
+		col = isIndex(to);
+
+		edges[row][col] = 0;
+	}
+
+	void BFS(T startVertex)
+	{
+		bool *visited = new bool[numVertices];
+		for (int i = 0; i < numVertices; i++)
+			visited[i] = false;
+
+		queue<int> Que;
+		int startIndex = isIndex(startVertex);
+
+		if (startIndex == -1)
+			return;
+
+		Que.push(startIndex);
+		visited[startIndex] = true;
+
+		while (!Que.empty())
+		{
+			int v = Que.front();
+			Que.pop();
+
+			cout << Vertices[v] << space;
+
+			for (int i = 0; i < numVertices; i++)
+			{
+				if (edges[v][i] != 0 && !visited[i])
+				{
+					Que.push(i);
+					visited[i] = true;
+				}
+			}
+		}
+
+		delete[] visited;
+	}
+
+	void DFS(T startVertex)
+	{
+		bool *visited = new bool[numVertices];
+		for (int i = 0; i < numVertices; i++)
+			visited[i] = false;
+
+		stack<int> Stack;
+		int startIndex = isIndex(startVertex);
+
+		if (startIndex == -1)
+			return;
+
+		Stack.push(startIndex);
+		visited[startIndex] = true;
+
+		while (!Stack.empty())
+		{
+			int v = Stack.top();
+			Stack.pop();
+
+			cout << Vertices[v] << space;
+
+			for (int i = 0; i < numVertices; i++)
+			{
+				if (edges[v][i] != 0 && !visited[i])
+				{
+					Stack.push(i);
+					visited[i] = true;
+				}
+			}
+		}
+
+		delete[] visited;
+	}
+
+	void print()
+	{
+		for (int i = 0; i < numVertices; i++)
+		{
+			cout << Vertices[i] << space;
+			for (int j = 0; j < numVertices; j++)
+				cout << edges[i][j] << space;
+			cout << line;
+		}
+	}
+
+	~Graph()
+	{
+		delete[] Vertices;
+
+		for (int i = 0; i < maxVertices; i++)
+			delete[] edges[i];
+		delete[] edges;
+	}
+};
