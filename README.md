@@ -28,6 +28,7 @@ The following data structures are implemented in this repository:
 - **Hash Tables**
   - Linear Hashmaps
   - Quadratic Hashmaps
+- **Huffman Encoding**
 
 Each implementation is located in its respective directory, and detailed comments are included in the code to provide explanations.
 
