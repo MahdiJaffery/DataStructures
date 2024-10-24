@@ -86,6 +86,33 @@ class SortedSet
         return true;
     }
 
+    bool rotateList(int k, Node *&head)
+    {
+        k %= length;
+        if (k == 0)
+            return true;
+
+        Node *temp = head;
+        for (int i = 0; i < length - k - 1; i++)
+        {
+            temp = temp->next;
+        }
+
+        Node *newHead = temp->next;
+        temp->next = nullptr;
+
+        temp = newHead;
+        while (temp->next)
+        {
+            temp = temp->next;
+        }
+
+        temp->next = head;
+        head = newHead;
+
+        return true;
+    }
+
 public:
     SortedSet() : head(nullptr), length(0) {}
 
@@ -113,6 +140,11 @@ public:
             insertData(temp->val);
             temp = temp->next;
         }
+    }
+
+    bool rotateList(int k)
+    {
+        return rotateList(k, head);
     }
 
     void print()
