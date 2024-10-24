@@ -144,6 +144,8 @@ public:
 
     bool rotateList(int k)
     {
+        if (k < 0)
+            return false;
         return rotateList(k, head);
     }
 
