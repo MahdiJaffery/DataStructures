@@ -149,6 +149,22 @@ public:
         return rotateList(k, head);
     }
 
+    void reverseList(){
+        Node *prev = nullptr;
+        Node *current = head;
+        Node *next = nullptr;
+
+        while (current)
+        {
+            next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
+        }
+
+        head = prev;
+    }
+
     void print()
     {
         if (!head) // Check if the list is empty
